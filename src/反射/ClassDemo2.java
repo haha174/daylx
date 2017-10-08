@@ -1,5 +1,6 @@
 package 反射;
 //  1
+
 public class ClassDemo2 {
 	public static void main(String[] args) {
 		//数据类型也有类类型   

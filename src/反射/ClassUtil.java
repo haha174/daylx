@@ -34,6 +34,7 @@ public class ClassUtil {
 	
 	
 	}
+	
 	public static void printClassField(Object obj) {
 		//首先获取类类型 
 				Class c1=obj.getClass();  //c  就是该类的类类型
