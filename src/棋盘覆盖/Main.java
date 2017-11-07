@@ -1,7 +1,5 @@
 package 棋盘覆盖;
-
 import java.util.Scanner;
-
 public class Main  
 {  
     int tile=1;//表示L型骨牌的编号  
