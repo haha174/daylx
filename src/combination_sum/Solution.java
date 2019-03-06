@@ -1,7 +1,7 @@
 package combination_sum;
 import java.util.*;
 public class Solution {
-    public static List<List<Integer>> combinationSum2(int[] candidates, int target) {
+    public static List<List<Integer>> combinationSum(int[] candidates, int target) {
         Arrays.sort(candidates);//先排序
         List<List<Integer>> result = new ArrayList<>();
         if (candidates.length == 0 || candidates[0] > target) {//特殊情况处理
@@ -39,7 +39,7 @@ public class Solution {
     public static void main(String[] args) {
         int[] candidates = new int[]{2, 3, 6, 7};
         int target = 7;
-        for (List<Integer> a : combinationSum2(candidates, target)) {
+        for (List<Integer> a : combinationSum(candidates, target)) {
             System.out.println(a.toString());
         }
     }
