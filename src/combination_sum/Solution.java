@@ -37,7 +37,7 @@ public class Solution {
 
 
     public static void main(String[] args) {
-        int[] candidates = new int[]{2, 3, 6, 7};
+        int[] candidates = new int[]{2, 2,3, 6, 7};
         int target = 7;
         for (List<Integer> a : combinationSum(candidates, target)) {
             System.out.println(a.toString());
