@@ -45,6 +45,15 @@ public class Solution {
         }
         for (int i = 0; i < matrix.length/2; i++) {
             for (int j = i; j < matrix[0].length - 1 - i; j++) {
+                /**
+                 * 本题实际上就是4个点的循环替换的一个过程
+                 * 4个点是有规律的他们时 (i,j)(j,portTwo)(portTwo,portThree)(portThree,i)
+                 *portTwo portThree 都可以通过ij 得到实际上只需要怎么确定 i,j 就可以了
+                 * 可以发现   i  在  0到matrix.length/2  之间   并且 i=<j < matrix[0].length - 1 - i
+                 * 这样就将整体的取值范围缩小到了很低了    4✖4的数组的话   ij  可以取值的有4个点 (0,0) (0,1) (0,2)(1,1)
+                 * 然后   将这4个点相互交换数据即可  (i,j)(j,portTwo)(portTwo,portThree)(portThree,i)
+                 *
+                 */
                 int portTwo= matrix.length-1-i;
                 int portThree= matrix[0].length-1-j;
                 int temp = matrix[j][portTwo];
