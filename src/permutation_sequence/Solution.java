@@ -30,7 +30,31 @@ class Solution {
 }
 
 
+//    public static void main(String[] args) {
+//        System.out.println( new Solution().getPermutation(6,501));
+//    }
+
     public static void main(String[] args) {
-        System.out.println( new Solution().getPermutation(5,31));
+        int a[]={1,2,3,4,5};
+        permutations(a,0,4);
+    }
+    public static void permutations(int[]a,int m,int n){
+        if(m==n){
+
+            for(int i=0;i<=n;i++){
+                System.out.print(a[i]);
+            }
+            System.out.println();
+        }else{
+            for(int i=m;i<=n;i++){
+                int temp=a[m];
+                a[m]=a[i];
+                a[i]=temp;
+                permutations(a,m+1,n);
+                temp=a[m];
+                a[m]=a[i];
+                a[i]=temp;
+            }
+        }
     }
 }
