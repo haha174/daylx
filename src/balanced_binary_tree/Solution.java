@@ -88,6 +88,5 @@ class Solution {
         node3.left=node5;
         node3.right=node6;
         System.out.println(new Solution().isBalanced(root));
-
     }
 }
