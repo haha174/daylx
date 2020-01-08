@@ -48,6 +48,6 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        System.out.println(new Solution().generate(5));
+        System.out.println(new Solution().generate(7));
     }
 }
