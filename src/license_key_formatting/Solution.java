@@ -34,7 +34,7 @@ class Solution {
             if (l != '-')
                 count++;
 
-        int l = data.length - 1;https://leetcode.com/problems/license-key-formatting/submissions/
+        int l = data.length - 1;
         int newLength = count + ((count - 1) / K);
         char[] newLetters = new char[newLength];
         int current = 0;
