@@ -1,4 +1,4 @@
-package easy.green.diameter_of_binary_tree;
+package easy.red.diameter_of_binary_tree;
 
 import common.TreeNode;
 
