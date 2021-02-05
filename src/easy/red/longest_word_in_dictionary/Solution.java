@@ -1,4 +1,4 @@
-package easy.green.longest_word_in_dictionary;
+package easy.red.longest_word_in_dictionary;
 
 import java.util.*;
 
