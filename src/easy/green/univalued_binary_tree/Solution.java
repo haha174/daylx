@@ -4,8 +4,8 @@ import common.TreeNode;
 
 class Solution {
     public boolean isUnivalTree(TreeNode root) {
-          if(root == null) return true;
-          return judge(root,root.val);
+        if(root == null) return true;
+        return judge(root,root.val);
     }
     public boolean judge(TreeNode root,int val) {
         if(root == null) return true;
