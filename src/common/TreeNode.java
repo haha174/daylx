@@ -1,5 +1,10 @@
 package common;
 
+import fibonacci_number.Solution;
+
+import java.util.Deque;
+import java.util.LinkedList;
+
 public class TreeNode {
     public  int val;
   public  TreeNode left;
@@ -13,6 +18,44 @@ public class TreeNode {
       }
 
     // 构造一个二叉搜索树
+    public static TreeNode generateNode(Integer[] nums){
+        if (nums.length == 0) return new TreeNode(0);
+        Deque<TreeNode> nodeQueue = new LinkedList<>();
+        TreeNode root = new TreeNode(nums[0]);
+        nodeQueue.offer(root);
+        TreeNode cur;
+        int lineNodeNum = 2;
+        int startIndex = 1;
+        int restLength = nums.length - 1;
+        while(restLength > 0) {
+            for (int i = startIndex; i < startIndex + lineNodeNum; i = i + 2) {
+                // 说明已经将nums中的数字用完，此时应停止遍历，并可以直接返回root
+                if (i == nums.length) return root;
+                cur = nodeQueue.poll();
+                if (nums[i] != null) {
+                    cur.left = new TreeNode(nums[i]);
+                    nodeQueue.offer(cur.left);
+                }
+                // 同上，说明已经将nums中的数字用完，此时应停止遍历，并可以直接返回root
+                if (i + 1 == nums.length) return root;
+                if (nums[i + 1] != null) {
+                    cur.right = new TreeNode(nums[i + 1]);
+                    nodeQueue.offer(cur.right);
+                }
+            }
+            startIndex += lineNodeNum;
+            restLength -= lineNodeNum;
+            lineNodeNum = nodeQueue.size() * 2;
+        }
+
+        return root;
+    }
+
+    public static void main(String[] args) {
+        Integer[] data={1,2,3,4,1,1,1,1,1,2,3,3,1,12,3,1,23,12,31,13,13,13,131,3,13,1,3,1};
+        System.out.println( TreeNode.generateNode(data));
+    }
+
 
     public static TreeNode generateSearchNode(Integer[] data){
         if (data.length==0)return new TreeNode();
