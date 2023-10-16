@@ -1,26 +1,33 @@
 package middle.red.best_time_to_buy_and_sell_stock_iv;
 
+import java.util.Arrays;
+
 class Solution {
     public int maxProfit(int k, int[] prices) {
-        if(prices.length == 0){
+        if (prices.length == 0) {
             return 0;
         }
+
         int n = prices.length;
-        int[][] dp = new int[n][2 * k + 1];
-        for(int i = 1;i < 2 * k + 1;i += 2){
-            dp[0][i] = -prices[0];
+        k = Math.min(k, n / 2);
+        int[] buy = new int[k + 1];
+        int[] sell = new int[k + 1];
+
+        buy[0] = -prices[0];
+        sell[0] = 0;
+        for (int i = 1; i <= k; ++i) {
+            buy[i] = sell[i] = Integer.MIN_VALUE / 2;
         }
-        for(int i = 1;i < n;i++){
-            for(int j = 0;j < 2 * k - 1;j += 2){
-                dp[i][j + 1] = Math.max(dp[i - 1][j + 1],dp[i - 1][j] - prices[i]);
-                dp[i][j + 2] = Math.max(dp[i - 1][j + 2],dp[i - 1][j + 1] + prices[i]);
+
+        for (int i = 1; i < n; ++i) {
+            buy[0] = Math.max(buy[0], sell[0] - prices[i]);
+            for (int j = 1; j <= k; ++j) {
+                buy[j] = Math.max(buy[j], sell[j] - prices[i]);
+                sell[j] = Math.max(sell[j], buy[j - 1] + prices[i]);
             }
         }
-        return dp[n - 1][2 * k];
-    }
 
-    public static void main(String[] args) {
-        int k = 2, prices[] = {3,2,6,5,0,3};
-        System.out.println(new Solution().maxProfit(k,prices));
+        return Arrays.stream(sell).max().getAsInt();
     }
 }
+
