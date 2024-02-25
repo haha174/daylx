@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 class Solution {
+    private int anInt;
+
     public int[] singleNumber(int[] nums) {
         Map<Integer, Integer> freq = new HashMap<Integer, Integer>();
         for (int num : nums) {
@@ -13,7 +15,7 @@ class Solution {
         int index = 0;
         for (Map.Entry<Integer, Integer> entry : freq.entrySet()) {
             if (entry.getValue() == 1) {
-                ans[index++] = entry.getKey();
+//                anInt;
             }
         }
         return ans;
