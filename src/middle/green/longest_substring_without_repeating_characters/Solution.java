@@ -19,6 +19,30 @@ class Solution {
 
     }
 
+//
+//
+//    public int lengthOfLongestSubstring(String s) {
+//        int result=0;
+//        char[] sc=s.toCharArray();
+//        for (int i=0;i<sc.length;i++){
+//            result=Math.max(result, getTempResult(i,sc))  ;
+//        }
+//        return result;
+//    }
+//
+//    private int getTempResult(int left,char[] s){
+//        int result=0;
+//        char[] ex=new char[256];
+//        for (int i=left;i<s.length;i++){
+//            if (ex[s[i]]>0){
+//                break;
+//            }
+//            ex[s[i]]=1;
+//            result++;
+//        }
+//        return result;
+//    }
+
     public static void main(String[] args) {
         System.out.println(new Solution().lengthOfLongestSubstring("abcabcbb"));
     }
