@@ -1,55 +1,40 @@
 package before.search_a_2d_matrix;
 
 class Solution {
-    // 二位数组中的二分查找
     public boolean searchMatrix(int[][] matrix, int target) {
-        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
-            return false;
-        }
-        int rowLength = matrix.length;
-        int[] matrixL = new int[rowLength];
-        for (int i = 0; i < rowLength; i++) {
-            matrixL[i] = matrix[i][0];
-        }
-        int row = foundFlag(matrixL, 0, rowLength-1, target);
-        System.out.println(row);
-        if (matrix[row][0] == target) {
-            return true;
-        } else {
-            int cow = foundFlag(matrix[row], 0, matrix[row].length-1, target);
-            if (matrix[row][cow] == target) {
+        int m = matrix.length, n = matrix[0].length;
+        int x = 0, y = n - 1;
+        while (x < m && y >= 0) {
+            if (matrix[x][y] == target) {
                 return true;
+            }
+            if (matrix[x][y] > target) {
+                --y;
             } else {
-                return false;
+                ++x;
             }
         }
-    }
-
-    public int foundFlag(int[] data, int startIndex, int endIndex, int num) {
-        if (startIndex == endIndex || endIndex-startIndex==1) {
-            if (data[endIndex]<=num){
-                return endIndex;
-            }else {
-                return startIndex;
-            }
-        }
-        int mid = (startIndex + endIndex) / 2;
-        if (data[mid] > num) {
-            return foundFlag(data, startIndex, mid, num);
-        } else if (data[mid] < num) {
-            return foundFlag(data, mid, endIndex, num);
-        } else {
-            return mid;
-        }
+        return false;
     }
 
     public static void main(String[] args) {
-        int[][] data={
-        {1,   3,  5,  7}
-        ,{10, 11, 16, 20}
-        ,{23, 30, 34, 50}
-        // ,{70, 71, 72, 73}
-    };
-        System.out.println(new Solution().searchMatrix(data,30));
+        int[][] data = {
+                {1, 2, 3, 4, 5}
+                , {6, 7, 8, 9, 10}
+                , {11, 12, 13, 14, 15}
+                , {16, 17, 18, 19, 20}
+                , {21, 22, 23, 24, 25}
+        };
+
+        int[][] data1 = {
+                {1, 4, 7, 11, 15},
+                {2, 5, 8, 12, 19},
+                {3, 6, 9, 16, 22},
+                {10, 13, 14, 17, 24},
+                {18, 21, 23, 100, 200}
+        };
+
+
+        System.out.println(new Solution().searchMatrix(data1, 100));
     }
 }

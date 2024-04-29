@@ -6,50 +6,29 @@ import java.util.List;
 
 public class Solution {
     public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> result = new ArrayList<>();
-        if (matrix == null || matrix.length == 0) {
-            return result;
-
-        }
+        List<Integer> result=new ArrayList<>();
         int steps=matrix.length*matrix[0].length;
         int step=0;
-        int length = matrix.length;
-        int width = matrix[0].length;
-        int times = Math.min((length + 1) / 2, (width + 1) / 2);
-        for (int k = 0; k < times; k++) {
-
-            for (int j = k; j < width - 1 - k&&step<steps; j++) {
-                result.add(matrix[k][j]);
-                step++;
-            }
-
-            for (int j = k; j < length - 1 - k&&step<steps; j++) {
-                result.add(matrix[j][width - 1 - k]);
-                step++;
-            }
-
-            for (int j = width - 1 - k; j > k&&step<steps; j--) {
-                result.add(matrix[length - 1 - k][j]);
-                step++;
-            }
-
-            for (int j = length - 1 - k; j > k&&step<steps; j--) {
-                result.add(matrix[j][k]);
-                step++;
-            }
-
+        int flag=0; // 0 1 2 3
+        int i=0,j=0;
+        if (matrix[0].length==1){
+            flag=1;
         }
-        if (length == width && length % 2 == 1) {
-            result.add(matrix[length / 2][width / 2]);
+        while (step<steps){
+            result.add(matrix[i][j]);
+            switch (flag%4){
+                case 0: j++; if (j>=matrix[0].length-1-flag/4){flag++;} break;
+                case 1: i++; if (i>=matrix.length-1-flag/4){flag++;} break;
+                case 2: j--; if (j<=flag/4){flag++;} break;
+                case 3: i--; if (i<=flag/4+1){flag++;} break;
+            }
+            step++;
         }
         return result;
     }
 
     public static void main(String[] args) {
-        int[][] data = {
-
-                {6,9,7}};
+        int[][] data = {{3},{2}};
         System.out.println(new Solution().spiralOrder(data));
-
     }
 }
