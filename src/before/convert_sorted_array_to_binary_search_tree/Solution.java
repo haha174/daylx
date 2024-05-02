@@ -32,11 +32,13 @@ class Solution {
     }
 
     TreeNode createTree(int[] nums,int s, int e){
-        if(s > e) return null;
-        int mid = (s+e)/2;
-        TreeNode t = new TreeNode(nums[mid]);
-        t.left = createTree(nums,s,mid-1);
-        t.right = createTree(nums,mid+1,e);
-        return t;
+        if (s>e){
+            return null;
+        }
+       int mid=(s+e)/2;
+        TreeNode node=new TreeNode(nums[mid]);
+        node.left=createTree(nums,s,mid-1);
+        node.right =createTree(nums,mid+1,e);
+        return node;
     }
 }

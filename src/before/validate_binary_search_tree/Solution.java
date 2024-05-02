@@ -20,6 +20,9 @@ class Solution {
         // 访问右子树
         return isValidBST(root.right);
     }
+
+
+
     public static void main(String[] args) {
         TreeNode t1=new TreeNode(5);
         TreeNode t2=new TreeNode(1);
