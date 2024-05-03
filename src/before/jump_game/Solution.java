@@ -19,6 +19,8 @@ public class Solution {
         }
         return true;
     }
+
+
     public static void main(String[] args) {
         int[] candidates = new int[]{3,2,1,0,4};
         System.out.println(new Solution().canJump(candidates));

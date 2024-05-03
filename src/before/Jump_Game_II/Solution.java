@@ -7,14 +7,16 @@ public class Solution {
             curFarthest = Math.max(curFarthest, i + A[i]);
             if (i == curEnd) {
                 jumps++;
+                System.out.println(i);
                 curEnd = curFarthest;
             }
         }
         return jumps;
     }
 
+
     public static void main(String[] args) {
-        int[] arr={1,2,1,1,1,1,1,1,1,1,1,1,1};
+        int[] arr={1,2,2,0,0,10,1,1,1,1,1,1,1,1};
         System.out.println(new Solution().jump(arr));
     }
 }
