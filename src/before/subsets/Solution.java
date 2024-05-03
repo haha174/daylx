@@ -23,21 +23,16 @@ class Solution {
 
     public List<List<Integer>> subsets(int[] nums) {
         List<List<Integer>> result=new ArrayList<>();
-        result.add(new ArrayList<>());
-        for (int i=1;i<=nums.length;i++){
-            generateCombinations(result,new ArrayList<>(),nums,i,1);
-        }
-
+        generateCombinations(result,new ArrayList<>(),nums,0);
         return result;
     }
 
-    public void generateCombinations(List<List<Integer>> result,List<Integer> current,int[] nums,int n,int index  ){
-        if (n==0){
-            result.add(new ArrayList<>(current));
-        }else{
-            for (int i=index;i<=nums.length-n+1;i++){
-                current.add(nums[i-1]);
-                generateCombinations(result,current,nums,n-1,i+1);
+    public void generateCombinations(List<List<Integer>> result,List<Integer> current,int[] nums,int start){
+        result.add(new ArrayList<>(current));
+        for (int i=start;i<nums.length;i++){
+            if (!current.contains(nums[i]) ){
+                current.add(nums[i]);
+                generateCombinations(result, current,nums,i+1);
                 current.remove(current.size()-1);
             }
         }
