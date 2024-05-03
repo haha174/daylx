@@ -26,11 +26,16 @@ package before.search_insert_position;
 class Solution {
     public int searchInsert(int[] nums, int target) {
         int i=0;
-        for (;i<nums.length && target<nums[i];i++){}
+        for (;i<nums.length;i++){
+            if (target<=nums[i]){
+                break;
+            }
+        }
         return i;
     }
 
     public static void main(String[] args) {
-
+        int[] data={1,3,5,6};
+        System.out.println(new Solution().searchInsert(data,5));
     }
 }
