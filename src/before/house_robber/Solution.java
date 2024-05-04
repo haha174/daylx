@@ -25,14 +25,22 @@ class Solution {
     public int rob(int[] nums) {
         if (nums.length == 0) return 0;
         if (nums.length == 1) return nums[0];
-        int prepre = nums[0];
-        int pre = Math.max(prepre, nums[1]);
-        int cur = pre;
-        for (int i = 2; i < nums.length; i++) {
-            cur = Math.max(nums[i] + prepre, pre);
-            prepre = pre;
-            pre = cur;
+
+        int pre=nums[1];
+        int prepre=nums[0];
+
+        for (int i=2;i<nums.length;i++){
+             int tmp=nums[i]+prepre;
+             prepre=Math.max(pre,prepre);
+             pre=tmp;
         }
-        return cur;
+
+        return Math.max(prepre,pre);
+
+    }
+
+    public static void main(String[] args) {
+        int data[]={2,1,1,2};
+        System.out.println(new Solution().rob(data));
     }
 }
