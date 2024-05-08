@@ -68,4 +68,10 @@ class Solution {
         }
         return D[n][m];
     }
+
+
+    public static void main(String[] args) {
+        String word1 = "sea", word2 = "eat";
+        System.out.println(new Solution().minDistance(word1,word2));
+    }
 }

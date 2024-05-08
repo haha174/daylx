@@ -22,8 +22,8 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        String str1="bsbininm";
-        String str2="jmjkbkjkv";
+        String str1="abcde";
+        String str2="ace";
         System.out.println(new Solution().longestCommonSubsequence(str1,str2));
     }
 }

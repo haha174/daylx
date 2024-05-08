@@ -4,27 +4,24 @@ import java.util.*;
 
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
-        int n = nums.length;
-        int[] ans = new int[n - k + 1];
-        Queue<int[]> queue=new PriorityQueue<>(new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
+        int[] result=new int[nums.length-k+1];
+         Queue<int[]> queue=new PriorityQueue<int[]>(new Comparator<int[]>() {
+             @Override
+             public int compare(int[] o1, int[] o2) {
                 return o1[0]==o2[0]?o2[1]-o1[1]:o2[0]-o1[0];
-            }
-        });
-        for (int i=0;i<k;i++){
-            queue.offer(new int[]{nums[i], i});
-        }
-
-        ans[0]=queue.peek()[0];
-        for (int i=k;i<nums.length;i++){
-            queue.offer(new int[]{nums[i], i});
-            while (!queue.isEmpty() && i-queue.peek()[1]>=k){
-                queue.poll();
-            }
-            ans[i-k+1]=queue.peek()[0];
-        }
-        return ans;
+             }
+         });
+         for (int i=0;i<k-1;i++){
+             queue.add(new int[]{nums[i],i});
+         }
+         for (int i=k-1;i< nums.length;i++){
+             queue.add(new int[]{nums[i],i});
+             while (!queue.isEmpty() && i-queue.peek()[1]>=k){
+                 queue.poll();
+             }
+             result[i-k+1]=queue.peek()[0];
+         }
+         return result;
     }
 
     public static void main(String[] args) {
