@@ -1,22 +1,24 @@
 package middle.green.longest_substring_without_repeating_characters;
 
 import java.util.HashMap;
+import java.util.Map;
 
 class Solution {
     public int lengthOfLongestSubstring(String s) {
         if (s.length()==0) return 0;
-        HashMap<Character, Integer> map = new HashMap<Character, Integer>();
-        int max = 0;
-        int left = 0;
-        for(int i = 0; i < s.length(); i ++){
-            if(map.containsKey(s.charAt(i))){
-                left = Math.max(left,map.get(s.charAt(i)) + 1);
+        int min=0;
+        int start=-1;
+        Map<Character,Integer> map=new HashMap<>();
+        for (int i=0;i<s.length();i++){
+            if (map.containsKey(s.charAt(i)) && map.get(s.charAt(i))>start){
+                start=map.get(s.charAt(i));
+            }else {
+                min=Math.max(i-start, min);
             }
             map.put(s.charAt(i),i);
-            max = Math.max(max,i-left+1);
         }
-        return max;
 
+        return map.size()==s.length()? s.length():min  ;
     }
 
 //
@@ -44,6 +46,6 @@ class Solution {
 //    }
 
     public static void main(String[] args) {
-        System.out.println(new Solution().lengthOfLongestSubstring("abcabcbb"));
+        System.out.println(new Solution().lengthOfLongestSubstring("tmmzuxt"));
     }
 }
