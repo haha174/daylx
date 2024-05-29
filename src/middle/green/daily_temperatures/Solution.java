@@ -2,21 +2,20 @@ package middle.green.daily_temperatures;
 
 import java.util.Deque;
 import java.util.LinkedList;
+import java.util.Stack;
 
 class Solution {
         public int[] dailyTemperatures(int[] temperatures) {
-            int length = temperatures.length;
-            int[] ans = new int[length];
+            int[] result=new int[temperatures.length];
             Deque<Integer> stack = new LinkedList<Integer>();
-            for (int i = 0; i < length; i++) {
-                int temperature = temperatures[i];
-                while (!stack.isEmpty() && temperature > temperatures[stack.peek()]) {
-                    int prevIndex = stack.pop();
-                    ans[prevIndex] = i - prevIndex;
+            for (int i=0;i<temperatures.length;i++){
+                while (!stack.isEmpty() && temperatures[i]>temperatures[stack.peek()]){
+                    int t=stack.pop();
+                    result[t]=i-t;
                 }
                 stack.push(i);
             }
-            return ans;
+            return result;
         }
 
     public static void main(String[] args) {
