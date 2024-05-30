@@ -37,4 +37,8 @@ class Solution {
         if(right == null) return left;
         return root;
     }
+
+    public static void main(String[] args) {
+
+    }
 }
