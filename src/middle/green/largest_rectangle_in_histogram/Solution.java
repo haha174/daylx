@@ -9,8 +9,6 @@ class Solution {
         for (int i = 0; i < heights.length; i++) {
             heightn[i] = heights[i];
         }
-//        //最后增加个高度为0的柱子，以便把单调栈里面的都弹出来
-//        heightn[heights.length] = 0;
         Deque<Integer> stack = new ArrayDeque<>();
         int maxS = 0;
         for (int i = 0; i < heightn.length; i++) {
@@ -22,5 +20,10 @@ class Solution {
             stack.push(i);
         }
         return maxS;
+    }
+
+    public static void main(String[] args) {
+        int[] data={2,1,5,6,2,3};
+        System.out.println(new Solution().largestRectangleArea(data));
     }
 }
