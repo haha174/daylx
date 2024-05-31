@@ -35,4 +35,9 @@ class Solution {
         }
         return ret;
     }
+
+    public static void main(String[] args) {
+        int[] data={1,1,1,2,2,3};
+        System.out.println(new Solution().topKFrequent(data,2));
+    }
 }

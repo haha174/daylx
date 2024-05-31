@@ -23,7 +23,7 @@ class Solution {
     }
 
     public static void main(String[] args) {
-        int[] data={2,1,5,6,2,3};
+        int[] data={2,1,5,6,2,2,2,3};
         System.out.println(new Solution().largestRectangleArea(data));
     }
 }
