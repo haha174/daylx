@@ -11,11 +11,13 @@ class Solution {
         return result;
     }
     private void generateParenthesis(List<String> result,StringBuilder sb,int left,int right,int n) {
-        if (sb.length()==n*2){
+        if (sb.length()==n*2 && left==right){
             result.add(sb.toString());
+            return;
         }
+
         if (left<n && left>=right){
-           sb.append("(");
+            sb.append("(");
             generateParenthesis(result,sb,left+1,right,n);
             sb.deleteCharAt(sb.length()-1);
         }

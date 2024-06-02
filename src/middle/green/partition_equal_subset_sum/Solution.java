@@ -18,6 +18,7 @@ class Solution {
             if (maxNum > target) {
                 return false;
             }
+            // return dfs( nums, target, 0);
             boolean[][] dp = new boolean[n][target + 1];
             for (int i = 0; i < n; i++) {
                 dp[i][0] = true;
@@ -35,6 +36,18 @@ class Solution {
             }
             return dp[n - 1][target];
         }
+
+
+        // 超时 动态规划是一种减少计算的模式
+//        private boolean dfs(int[] nums,int target,int index){
+//            if (index>=nums.length){
+//                return false;
+//            }
+//            if (nums[index]==target){
+//                return true;
+//            }
+//            return dfs( nums, target-nums[index], index+1) || dfs( nums, target, index+1);
+//        }
 
     public static void main(String[] args) {
         int[] data={3,3,3,4,5};

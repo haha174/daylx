@@ -17,11 +17,11 @@ class Solution {
             Arrays.fill(f[i], true);
         }
 
-        for (int i = n - 1; i >= 0; --i) {
-            for (int j = i + 1; j < n; ++j) {
-                f[i][j] = (s.charAt(i) == s.charAt(j)) && f[i + 1][j - 1];
-            }
-        }
+//        for (int i = n - 1; i >= 0; --i) {
+//            for (int j = i + 1; j < n; ++j) {
+//                f[i][j] = (s.charAt(i) == s.charAt(j)) && f[i + 1][j - 1];
+//            }
+//        }
 
         dfs(s, 0);
         return ret;

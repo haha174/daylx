@@ -22,27 +22,9 @@ class Solution {
         return dp[len];
     }
 
-//    public boolean wordBreak(String s, List<String> wordDict) {
-//       return wordBreak(s,0,wordDict);
-//    }
-//
-//    public boolean wordBreak(String s, int start,List<String> wordDict) {
-//        if (start>=s.length()){
-//            return true;
-//        }
-//        for (int i=0;i<wordDict.size();i++){
-//            if ( wordDict.get(i).length()+start<=s.length() && s.substring(start,wordDict.get(i).length()+start).equals(wordDict.get(i)) && wordBreak(s,start+wordDict.get(i).length(),wordDict)){
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
     public static void main(String[] args) {
         String s="catsandog";
         List<String> wordDict=Arrays.asList("cat", "dog", "san", "and", "cat");
-//        wordDict.add("apple");
-//        wordDict.add("pen");
         System.out.println(new Solution().wordBreak(s,wordDict));
     }
 }

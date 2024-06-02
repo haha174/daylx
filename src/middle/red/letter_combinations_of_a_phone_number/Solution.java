@@ -23,17 +23,19 @@ public class Solution {
     }
 
     public void backtrack(List<String> combinations, Map<Character, String> phoneMap, String digits, int index, StringBuffer combination) {
-        if (index == digits.length()) {
+        if (combination.length() == digits.length()) {
             combinations.add(combination.toString());
         } else {
-            char digit = digits.charAt(index);
-            String letters = phoneMap.get(digit);
-            int lettersCount = letters.length();
-            for (int i = 0; i < lettersCount; i++) {
-                combination.append(letters.charAt(i));
-                backtrack(combinations, phoneMap, digits, index + 1, combination);
-                combination.deleteCharAt(index);
+            String current=phoneMap.get(digits.charAt(index));
+            for (char c:current.toCharArray()){
+                combination.append(c);
+                backtrack(combinations, phoneMap, digits, index+1, combination);
+                combination.deleteCharAt(combination.length()-1);
             }
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(new Solution().letterCombinations("23"));
     }
 }
