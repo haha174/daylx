@@ -4,15 +4,6 @@ import common.TreeNode;
 
 import java.util.*;
 
-//class Solution {
-//
-//    Map<Integer, TreeNode> map=new HashMap<>();
-//    public boolean canFinish(int numCourses, int[][] prerequisites) {
-//        for (int i=0;i<prerequisites.length;i++){
-//
-//        }
-//    }
-//}
 
 //
 //class Solution {
@@ -53,56 +44,97 @@ import java.util.*;
 //    }
 //
 //    public static void main(String[] args) {
-//        int[][] data={{0,1},{1,2}};
-//        System.out.println(new Solution().canFinish(3,data));
+//        int[][] data={{1,2},{2,3}};
+//        System.out.println(new Solution().canFinish(4,data));
 //    }
 //}
 
 
-
 class Solution {
-    List<List<Integer>> edges;
-    int[] visited;
-    boolean valid = true;
+    List<List<Integer>> edges = new ArrayList<>();
+    int[] indeg;
 
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        edges = new ArrayList<List<Integer>>();
-        for (int i = 0; i < numCourses; ++i) {
-            edges.add(new ArrayList<Integer>());
+        indeg = new int[numCourses];
+        for (int i=0;i<numCourses;i++) {
+            edges.add(i, new ArrayList<>());
         }
-        visited = new int[numCourses];
-        for (int[] info : prerequisites) {
-            edges.get(info[1]).add(info[0]);
+
+        for (int[] prerequisite : prerequisites) {
+            edges.get(prerequisite[1]).add(prerequisite[0]);
+            indeg[prerequisite[0]]++;
         }
-        for (int i = 0; i < numCourses && valid; ++i) {
-            if (visited[i] == 0) {
-                dfs(i);
+        Queue<Integer> queue = new LinkedList<Integer>();
+        int visit=0;
+        for (int i=0;i<numCourses;i++){
+            if (indeg[i]==0){
+                queue.offer(i);
             }
         }
-        return valid;
-    }
-
-    public void dfs(int u) {
-        visited[u] = 1;
-        for (int v: edges.get(u)) {
-            if (visited[v] == 0) {
-                dfs(v);
-                if (!valid) {
-                    return;
+        while (!queue.isEmpty()){
+            visit++;
+            int u=queue.poll();
+            for (Integer c:edges.get(u)){
+                indeg[c]--;
+                if (indeg[c]==0){
+                    queue.offer(c);
                 }
-            } else if (visited[v] == 1) {
-                valid = false;
-                return;
             }
         }
-        visited[u] = 2;
-    }
 
+        return visit==numCourses;
+    }
 
     public static void main(String[] args) {
-        int[][] data={{0,1},{1,2}};
-        System.out.println(new Solution().canFinish(3,data));
+        int[][] data = {{1, 2}, {2, 3}};
+        System.out.println(new Solution().canFinish(4, data));
     }
 }
 
+//
+//class Solution {
+//    List<List<Integer>> edges;
+//    int[] visited;
+//    boolean valid = true;
+//
+//    public boolean canFinish(int numCourses, int[][] prerequisites) {
+//        edges = new ArrayList<List<Integer>>();
+//        for (int i = 0; i < numCourses; ++i) {
+//            edges.add(new ArrayList<Integer>());
+//        }
+//        visited = new int[numCourses];
+//        for (int[] info : prerequisites) {
+//            edges.get(info[1]).add(info[0]);
+//        }
+//        for (int i = 0; i < numCourses && valid; ++i) {
+//            if (visited[i] == 0) {
+//                dfs(i);
+//            }
+//        }
+//        return valid;
+//    }
+//
+//    public void dfs(int u) {
+//        visited[u] = 1;
+//        for (int v: edges.get(u)) {
+//            if (visited[v] == 0) {
+//                dfs(v);
+//                if (!valid) {
+//                    return;
+//                }
+//            } else if (visited[v] == 1) {
+//                valid = false;
+//                return;
+//            }
+//        }
+//        visited[u] = 2;
+//    }
+//
+//
+//    public static void main(String[] args) {
+//        int[][] data={{0,1},{1,2}};
+//        System.out.println(new Solution().canFinish(3,data));
+//    }
+//}
+//
 
