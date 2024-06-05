@@ -1,43 +1,39 @@
 package middle.green.top_k_frequent_elements;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.PriorityQueue;
+import java.util.*;
 
 class Solution {
     public int[] topKFrequent(int[] nums, int k) {
-        Map<Integer, Integer> occurrences = new HashMap<Integer, Integer>();
-        for (int num : nums) {
-            occurrences.put(num, occurrences.getOrDefault(num, 0) + 1);
-        }
-
-        // int[] 的第一个元素代表数组的值，第二个元素代表了该值出现的次数
-        PriorityQueue<int[]> queue = new PriorityQueue<int[]>(new Comparator<int[]>() {
-            public int compare(int[] m, int[] n) {
-                return m[1] - n[1];
+        int[] result=new int[k];
+        Map<Integer,Integer> map=new HashMap<>();
+       for (int i:nums){
+           map.put(i,map.getOrDefault(i,0)+1);
+       }
+        Queue<int[]> queue=new PriorityQueue<>(new Comparator<int[]>() {
+            @Override
+            public int compare(int[] o1, int[] o2) {
+                return o1[1]-o2[1];
             }
         });
-        for (Map.Entry<Integer, Integer> entry : occurrences.entrySet()) {
-            int num = entry.getKey(), count = entry.getValue();
-            if (queue.size() == k) {
-                if (queue.peek()[1] < count) {
-                    queue.poll();
-                    queue.offer(new int[]{num, count});
-                }
-            } else {
-                queue.offer(new int[]{num, count});
-            }
-        }
-        int[] ret = new int[k];
-        for (int i = 0; i < k; ++i) {
-            ret[i] = queue.poll()[0];
-        }
-        return ret;
+       for (Map.Entry<Integer,Integer> entry:map.entrySet()){
+           if (queue.size()<k){
+               queue.offer(new int[]{entry.getKey(),entry.getValue()});
+           }else if( entry.getValue()>queue.peek()[1]){
+               queue.poll();
+               queue.offer(new int[]{entry.getKey(),entry.getValue()});
+           }
+
+       }
+       int index=0;
+       while (!queue.isEmpty()){
+           result[index++]=queue.poll()[0];
+       }
+       return result;
     }
 
     public static void main(String[] args) {
-        int[] data={1,1,1,2,2,3};
-        System.out.println(new Solution().topKFrequent(data,2));
+        int[] data={4,1,-1,2,-1,2,3};
+        int[] result=new Solution().topKFrequent(data,2);
+        System.out.println();
     }
 }
