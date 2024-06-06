@@ -5,35 +5,35 @@ import java.util.Map;
 
 class Solution {
     public String minWindow(String s, String t) {
-
         int[] map = new int[128];
-
+        int min = Integer.MAX_VALUE;
+        int head = 0;
+        int count = 0;
+        int start = 0;
+        int end = 0;
         for (char c : t.toCharArray()) {
             map[c]++;
+            count++;
         }
-
-        int counter = t.length(), begin = 0, end = 0, min = Integer.MAX_VALUE, head = 0;
-
         while (end < s.length()) {
             if (map[s.charAt(end++)]-- > 0) {
-                counter--; // in t
+                count--;
             }
 
-            while (counter == 0) { // valid
-
-                if (end - begin < min) {
-                    min = end - (head = begin);
+            while (count == 0) {
+                if (end - start < min) {
+                    min = end - (start);
+                    head = start;
                 }
-
-                if (map[s.charAt(begin++)]++ == 0) {
-                    counter++; // make it invalid
+                if (map[s.charAt(start++)]++ == 0) {
+                    count++;
                 }
             }
         }
-        return min == Integer.MAX_VALUE ? "" : s.substring(head, head + min);
+        return s.substring(head, head + min);
     }
 
     public static void main(String[] args) {
-        System.out.println(new Solution().minWindow("AADOBECODEBANC","ABC"));
+        System.out.println(new Solution().minWindow("ADOBECODEBANC", "ABC"));
     }
 }
