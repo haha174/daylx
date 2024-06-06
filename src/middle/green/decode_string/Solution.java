@@ -13,23 +13,23 @@ class Solution {
         StringBuilder ans = new StringBuilder();
         int multi = 0;
         for (char c : s.toCharArray()) {
-            if (Character.isDigit(c)) {
-                multi=multi*10+c - '0';
-            }else if ('['==c) {
-                ansStack.add(ans);
-                ans=new StringBuilder();
-                multiStack.add(multi);
-                multi=0;
-            }else if (']'==c) {
-                int tmpMulti=multiStack.pop();
-                StringBuilder tmpAns = ansStack.pop();
-                for (int i=0;i<tmpMulti;i++){
-                    tmpAns.append(ans);
-                }
-                ans=tmpAns;
-            }else {
-                ans.append(c);
-            }
+           if (Character.isDigit(c)){
+               multi=multi*10+(c-'0');
+           }else if ('['==c){
+               multiStack.add(multi);
+               ansStack.add(ans);
+               multi=0;
+               ans=new StringBuilder();
+           }else if (']'==c){
+               StringBuilder tmp=ansStack.pop();
+               int multiTmp=multiStack.pop();
+               for (int i=0;i<multiTmp;i++){
+                   tmp.append(ans);
+               }
+               ans=tmp;
+           }else {
+               ans.append(c);
+           }
         }
         return ans.toString();
     }
